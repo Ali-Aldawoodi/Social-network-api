@@ -1,22 +1,22 @@
-const { Thought, User } = require('../models');
+const { Thought, User, Reaction } = require('../models');
 
 module.exports = {
     async getThoughts(req, res) {
         try {
             const thoughts = await Thought.find();
             res.json(thoughts);
-        } catch(err) {
+        } catch (err) {
             res.status(500).json(err);
         }
     },
 
-    async getSingleThought(req,res) {
+    async getSingleThought(req, res) {
         try {
-            const thought = await Thought.findOne({_id: req.params.thoughtId })
-            .select('-_v');
+            const thought = await Thought.findOne({ _id: req.params.thoughtId })
+                .select('-_v');
 
-            if(!thought) {
-                return res.status(404).json({ message: 'No thought!'});
+            if (!thought) {
+                return res.status(404).json({ message: 'No thought!' });
             }
 
             res.json(thought)
@@ -38,13 +38,13 @@ module.exports = {
     async updateThought(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
-                {_id: req.params.thoughtId},
+                { _id: req.params.thoughtId },
                 { $set: req.body },
                 { runValidators: true, new: true },
             );
 
             if (!thought) {
-                res.status(404).json({ message: 'No thought!'});
+                res.status(404).json({ message: 'No thought!' });
             }
 
             res.json(thought);
@@ -57,13 +57,33 @@ module.exports = {
         try {
             const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
-            if(!thought) {
-                res.status(404).json({ message: 'No thought!'});
+            if (!thought) {
+                res.status(404).json({ message: 'No thought!' });
             }
-            await User.deleteMany({ _id: { $in: thought.users}})
-            res.json({ message: 'Thought deleted!'});
+            await User.deleteMany({ _id: { $in: thought.users } })
+            res.json({ message: 'Thought deleted!' });
         } catch (err) {
             res.status(500).json(err);
         }
     },
+
+    // separate function. it will require two object functions
+
+    async createReaction(req, res) {
+        try {
+            const thought = await Thought.findOneAndUpdate(
+                { _id: req.params.thoughtId },
+                { $set: req.body },
+                { runValidators: true, new: true },
+            );
+            if (!thought) {
+                res.status(404).json({ message: 'No thought!' });
+            }
+            await Reaction.Create(req.body )
+            res.json({ message: 'Reaction has been created' })
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
+
 };

@@ -16,7 +16,13 @@ connection.once('open', async () => {
         await connection.dropCollection('users');
     }
 
+    // How do i input al
     const users = [];
+
+    const username = 'asdf'
+    const email = 'asdf@yahoo.com'
+    const thoughts = ['what is this']
+    const friends = ['john']
 
     users.push({
         username,
@@ -27,6 +33,10 @@ connection.once('open', async () => {
 
     await User.collection.insertMany(users);
 
+    const thoughtText = 'where are we';
+    const createdAt = '11/06/23';
+    const reactions = ['wow great']
+
 
     await Thought.collection.insertOne({
         thoughtText,
@@ -36,6 +46,7 @@ connection.once('open', async () => {
     });
 
     console.table(users);
+    console.table(thoughts)
     console.info('Seeding complete!');
     process.exit(0);
 
