@@ -19,6 +19,7 @@ module.exports = {
 
     async getSingleUser(req, res) {
         try {
+            // add .populate here
             const user = await User.findOne({ _id: req.params.userId })
                 .select('-_v');
             if (!user) {
@@ -45,7 +46,7 @@ module.exports = {
 
     async deleteUser(req, res) {
         try {
-            const user = await User.findOneAndRemove({ _id: req.params.userId });
+            const user = await User.findOneAndDelete({ _id: req.params.userId });
 
             if (!user) {
                 return res.status(400).json({ message: 'No user!' });

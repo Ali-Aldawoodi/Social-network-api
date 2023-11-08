@@ -10,17 +10,17 @@ const {
 } = require('../../controllers/userController');
 
 // /api/users
-router.route('/').get(getUsers);
+router.route('/').get(getUsers).post(addUser);
 
 // /api/users/:id
-router.route('/:userId').get(getSingleUser);
+router
+    .route('/:userId')
+    .get(getSingleUser)
+    .put(updateUser)
+    .delete(deleteUser)
 
-router.route('/').post(addUser);
 
-router.route('/:userId').put(updateUser);
-
-router.route('/:userId').delete(deleteUser);
-
+// usercontrollers - .populate friends or thoughts 
 router.route('/:userId/friends/:friendId').post(addFriend);
 
 router.route('/:userId/friends/:friendId').delete(deleteFriend);
