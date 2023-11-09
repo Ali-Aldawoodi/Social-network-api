@@ -22,7 +22,7 @@ connection.once('open', async () => {
     const username = 'asdf'
     const email = 'asdf@yahoo.com'
     const thoughts = ['what is this']
-    const friends = ['john']
+    const friends = ['john', '654c2bb0e2453c45ded1eef1']
 
     users.push({
         username,
