@@ -1,19 +1,16 @@
 # Social-network-api
-<!-- GIVEN a social network API
-WHEN I enter the command to invoke the application
-THEN my server is started and the Mongoose models are synced to the MongoDB database
 
+## Description
+User will be able to start the application with the command - npm run start. User then will be able to either insomnia or postman and test the routes. When user enters the proper endpoint and http method, they will be able to find all, find a single, create one, and delete one thought and/or user. 
 
-WHEN I open API GET routes in Insomnia for users and thoughts
-THEN the data for each of these routes is displayed in a formatted JSON
+## Contributors
+George - TA
+Kirtley - TA
 
+## Screenshots
+![Alt text](image.png)
+![Alt text](<Screenshot 2023-11-08 183204.png>)
 
-WHEN I test API POST, PUT, and DELETE routes in Insomnia
-THEN I am able to successfully create, update, and delete users and thoughts in my database
-
-
-WHEN I test API POST and DELETE routes in Insomnia
-THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
-
-
- -->
+## Links
+Video - https://drive.google.com/file/d/15PDsUV7Xy0GI8_lXXOXoH3GF3qcVO9ns/view
+Github - https://github.com/Ali-Aldawoodi/Social-network-api
